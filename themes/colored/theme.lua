@@ -21,9 +21,9 @@ theme.useless_gap         = 4  -- useless gap
 -- Fonts
 ------------------------------------------------------------
 theme.fonts = {
-	main     = "Roboto 13",      -- main font
-	menu     = "Roboto 13",      -- main menu font
-	tooltip  = "Roboto 13",      -- tooltip font
+	main     = "Roboto 10",      -- main font
+	menu     = "Roboto 10",      -- main menu font
+	tooltip  = "Roboto 10",      -- tooltip font
 	notify   = "Play bold 14",   -- redflat notify popup font
 	clock    = "Play bold 12",   -- textclock widget font
 	qlaunch  = "Play bold 14",   -- quick launch key label font

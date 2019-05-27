@@ -181,7 +181,8 @@ theme.individual.desktop.multiline.vnstat = {
 theme.widget.wrapper = {
 	layoutbox   = { 12, 9, 6, 6 },
 	textclock   = { 10, 10, 0, 0 },
-	volume      = { 4, 9, 3, 3 },
+	--volume      = { 4, 9, 3, 3 },
+	volume      = { 4, 4, 3, 3 },
 	microphone  = { 5, 6, 6, 6 },
 	keyboard    = { 9, 9, 3, 3 },
 	mail        = { 9, 9, 3, 3 },
@@ -202,7 +203,7 @@ theme.widget.wrapper = {
 --theme.gauge.graph.dots.dot_gap_h = 5
 
 -- System updates indicator
-theme.widget.updates.icon = theme.path .. "/widget/updates.svg"
+theme.widget.updates.icon = theme.path .. "/widget/cogs.svg"
 
 -- Audio
 theme.gauge.audio.blue.dash.plain = true
@@ -223,7 +224,7 @@ theme.widget.tasklist.task = theme.gauge.task.ruby
 theme.widget.keyboard.icon = theme.path .. "/widget/keyboard.svg"
 
 -- Mail
-theme.widget.mail.icon = theme.path .. "/widget/mail.svg"
+theme.widget.mail.icon = theme.path .. "/widget/microsoftoutlook.svg"
 
 -- Battery
 theme.widget.battery.notify = { icon = theme.path .. "/widget/battery.svg", color = theme.color.main }

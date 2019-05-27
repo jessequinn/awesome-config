@@ -105,8 +105,8 @@ taglist.names = {
 
 local al = awful.layout.layouts
 taglist.layouts = {
-	al[5], al[6], al[6], al[4], al[3], al[3],
-	al[5], al[6], al[6], al[4], al[3], al[1]
+	al[5], al[5], al[5], al[5], al[5], al[5],
+	al[5], al[5], al[5], al[5], al[5], al[5]
 }
 
 -- Textclock widget
@@ -137,7 +137,8 @@ tray.buttons = awful.util.table.join(
 -- PA volume control
 --------------------------------------------------------------------------------
 local volume = {}
-volume.widget = redflat.widget.pulse(nil, { widget = redflat.gauge.audio.blue.new })
+--volume.widget = redflat.widget.pulse(nil, { widget = redflat.gauge.audio.blue.new })
+volume.widget = redflat.widget.pulse(nil, { widget = redflat.gauge.monitor.circle })
 
 -- activate player widget
 redflat.float.player:init({ name = env.player })
@@ -297,10 +298,10 @@ awful.screen.connect_for_each_screen(
 				separator,
 				env.wrapper(taglist[s], "taglist"),
 				separator,
-				env.wrapper(kbindicator.widget, "keyboard", kbindicator.buttons),
-				separator,
-				env.wrapper(mail.widget, "mail", mail.buttons),
-				separator,
+				--env.wrapper(kbindicator.widget, "keyboard", kbindicator.buttons),
+				--separator,
+				--env.wrapper(mail.widget, "mail", mail.buttons),
+				--separator,
 			},
 			{ -- middle widget
 				layout = wibox.layout.align.horizontal,
@@ -313,17 +314,19 @@ awful.screen.connect_for_each_screen(
 				layout = wibox.layout.fixed.horizontal,
 
 				separator,
+				env.wrapper(mail.widget, "mail", mail.buttons),
+				separator,
 				env.wrapper(updates.widget, "updates", updates.buttons),
 				separator,
 				env.wrapper(sysmon.widget.network, "network"),
 				separator,
-				env.wrapper(microphone.widget, "microphone", microphone.buttons),
-				separator,
+				--env.wrapper(microphone.widget, "microphone", microphone.buttons),
+				--separator,
 				env.wrapper(volume.widget, "volume", volume.buttons),
 				separator,
 				env.wrapper(sysmon.widget.cpu, "cpu", sysmon.buttons.cpu),
 				env.wrapper(sysmon.widget.ram, "ram", sysmon.buttons.ram),
-				env.wrapper(sysmon.widget.battery, "battery"),
+				--env.wrapper(sysmon.widget.battery, "battery"),
 				separator,
 				env.wrapper(textclock.widget, "textclock"),
 				separator,
