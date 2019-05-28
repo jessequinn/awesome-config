@@ -13,25 +13,30 @@ local autostart = {}
 --------------------------------------------------------------------------------
 function autostart.run()
 	-- environment
-	awful.spawn.with_shell("python ~/scripts/env/pa-setup.py")
-	awful.spawn.with_shell("python ~/scripts/env/color-profile-setup.py")
-	awful.spawn.with_shell("python ~/scripts/env/kbd-setup.py")
+	--awful.spawn.with_shell("python ~/scripts/env/pa-setup.py")
+	--awful.spawn.with_shell("python ~/scripts/env/color-profile-setup.py")
+	--awful.spawn.with_shell("python ~/scripts/env/kbd-setup.py")
 
 	-- gnome environment
 	awful.spawn.with_shell("/lib/gsd-xsettings")
 	awful.spawn.with_shell("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
 
 	-- firefox sync
-	awful.spawn.with_shell("python ~/scripts/firefox/ff-sync.py")
+	--awful.spawn.with_shell("python ~/scripts/firefox/ff-sync.py")
 
 	-- utils
 	awful.spawn.with_shell("compton")
 	awful.spawn.with_shell("nm-applet")
 
 	-- apps
-	awful.spawn.with_shell("clipflap")
+	--awful.spawn.with_shell("clipflap")
+	--awful.spawn.with_shell("transmission-gtk -m")
+	--awful.spawn.with_shell("pragha --toggle_view")
+	awful.spawn.with_shell("franz")
 	awful.spawn.with_shell("transmission-gtk -m")
-	awful.spawn.with_shell("pragha --toggle_view")
+	awful.spawn.with_shell("~/Applications/jetbrains-toolbox_00000000000000000000000000000000")
+	awful.spawn.with_shell("~/Applications/unityhub_fdc140afedd1826bd1305af121a3b6b4.appimage")
+
 end
 
 -- Read and commads from file and spawn them
