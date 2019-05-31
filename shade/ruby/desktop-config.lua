@@ -94,7 +94,7 @@ function desktop:init(args)
 	transm.args = {
 		topbars    = { num = 12, maxm = 100 },
 		lines      = { { maxm = 6*1024 }, { maxm = 6*1024 } },
-		meter      = { async = system.transmission.info, args = { speed_only = true } },
+		meter      = { async = system.transmission.info, args = { speed_only = true, command = "transmission-remote remus -l", show_active_only = true } },
 		timeout    = 10,
 	}
 
@@ -108,10 +108,9 @@ function desktop:init(args)
 
 	disks.args = {
 		sensors  = {
-			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "root",    args = "/"            },
-			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "home",    args = "/home"        },
-			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "storage", args = "/opt"         },
-			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "media",   args = "/mnt/media"   },
+			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "HDD1 (PRO 850)",    args = "/"            },
+			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "HDD1 (EVO 840)",    args = "/media/HDD2"        },
+			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "HDD1 (EV0 860)", args = "/media/HDD3"         },
 		},
 		timeout = 300
 	}
@@ -170,7 +169,8 @@ function desktop:init(args)
 		sensors = {
 			{ meter_function = system.lmsensors.get, args = "cpu",  maxm = 100, crit = 75, name = "cpu"  },
 			{ meter_function = system.lmsensors.get, args = "wifi", maxm = 100, crit = 75, name = "wifi" },
-			{ async_function = system.thermal.nvoptimus, maxm = 105, crit = 80, name = "gpu" }
+			--{ async_function = system.thermal.nvoptimus, maxm = 105, crit = 80, name = "gpu" }
+			{ meter_function = system.thermal.nvsmi, maxm = 105, crit = 80, name = "gpu" }
 		},
 		timeout = sensors_base_timeout,
 	}
@@ -181,14 +181,17 @@ function desktop:init(args)
 	--------------------------------------------------------------------------------
 	local thermal_storage = { geometry = wgeometry(grid, places.thermal2, workarea) }
 
-	local hdd_smart_check = system.simple_async("smartctl --attributes /dev/sda", "194.+%s(%d+)%s%(.+%)\r?\n")
-	local ssd_smart_check = system.simple_async("smartctl --attributes /dev/nvme0n1", "Temperature:%s+(%d+)%sCelsius")
+	--local hdd_smart_check = system.simple_async("smartctl --attributes /dev/sda", "194.+%s(%d+)%s%(.+%)\r?\n")
+	--local ssd_smart_check = system.simple_async("smartctl --attributes /dev/nvme0n1", "Temperature:%s+(%d+)%sCelsius")
 
 	thermal_storage.args = {
 		sensors = {
-			{ async_function = hdd_smart_check, maxm = 60, crit = 45, name = "hdd" },
-			{ async_function = ssd_smart_check, maxm = 80, crit = 70, name = "ssd" },
-			{ meter_function = system.lmsensors.get, args = "ram", maxm = 100, crit = 75, name = "ram" },
+			--{ async_function = hdd_smart_check, maxm = 60, crit = 45, name = "hdd" },
+			--{ async_function = ssd_smart_check, maxm = 80, crit = 70, name = "ssd" },
+			--{ meter_function = system.lmsensors.get, args = "ram", maxm = 100, crit = 75, name = "ram" },
+			{ meter_function = system.thermal.hddtemp, maxm = 60, crit = 45, name = "HDD1 (PRO 850)", args = { disk = "/dev/sda"} },
+			{ meter_function = system.thermal.hddtemp, maxm = 60, crit = 45, name = "HDD2 (EVO 840)", args = { disk = "/dev/sdb"} },
+			{ meter_function = system.thermal.hddtemp, maxm = 60, crit = 45, name = "HDD3 (EVO 860)", args = { disk = "/dev/sdc"} },
 		},
 		timeout = 3 * sensors_base_timeout,
 	}
