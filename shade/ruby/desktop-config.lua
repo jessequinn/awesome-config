@@ -119,7 +119,7 @@ function desktop:init(args)
 
 	-- QEMU image (placed along with disks)
 	--------------------------------------------------------------------------------
-	local qm1 = "/opt/vmdrive/win10-gvt/win10-gvt-base.qcow2"
+	local qm1 = "/media/HDD2/virtual_machines/win10-2.img"
 	local qm2 = "/opt/vmdrive/win10-gvt/snap/win10-gvt-current.qcow2"
 
 	local bms = beautiful.desktop.multimeter -- base multimeter style
@@ -136,7 +136,7 @@ function desktop:init(args)
 	--setup
 	qemu.args = {
 		sensors  = {
-			{ meter_function = system.qemu_image_size, maxm = 100, crit = 90, name = "qemu-w10-base", args = qm1 },
+			{ meter_function = system.qemu_image_size, maxm = 100, crit = 90, name = "Windows 10", args = qm1 },
 			{ meter_function = system.qemu_image_size, maxm = 100, crit = 80, name = "qemu-w10-snap", args = qm2 },
 		},
 		timeout = 600
